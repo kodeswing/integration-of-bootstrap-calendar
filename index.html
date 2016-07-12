@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calendar</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="calCtrl">
+	{{message}}
+
+<br><br><br>
+
+
+<mwl-calendar
+    view="calendarView"
+    view-date="calendarDate"
+    events="events"
+    view-title="calendarTitle"
+    on-event-click="eventClicked(calendarEvent)"
+    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+    on-edit-event-click="eventEdited(calendarEvent)"
+    on-delete-event-click="eventDeleted(calendarEvent)"
+    cell-is-open="true">
+</mwl-calendar>
+
+
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+
+<script type="text/javascript">
+angular.module('myApp',['mwl.calendar', 'ui.bootstrap'])
+		.controller('calCtrl',function($scope){
+
+			$scope.message = "Hello World from Angular!";
+			$scope.calendarView = 'month';
+			$scope.calendarDate = new Date();
+		});
+</script>
+
+</body>
+</html>
